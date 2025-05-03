@@ -1,6 +1,15 @@
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
 
+
+cloudinary.config({
+    cloud_name:process.env.CLOUDINARY_CLOUD_NAME,
+    api_key:process.env.CLOUDINARY_API_KEY,
+    api_secret:process.env.CLOUDINARY_API_SECRET,
+    secure:true,
+
+});
+
 const uploadOnCloudinary = async (fileBuffer, fileName) => {
     try {
         if (!fileBuffer) {
@@ -8,31 +17,32 @@ const uploadOnCloudinary = async (fileBuffer, fileName) => {
             return null;
         }
 
-        // Upload the buffer to Cloudinary
-        const response = await cloudinary.uploader.upload_stream(
-            {
-                resource_type: "auto",  // Automatically detect the file type (image, video, etc.)
-                public_id: fileName,    // Optional: set the public ID if needed
-            },
-            (error, result) => {
-                if (error) {
-                    console.error("Cloudinary upload error:", error);
-                    return null;
+        return new Promise((resolve, reject) => {
+            const uploadStream = cloudinary.uploader.upload_stream(
+                {
+                    resource_type: "auto",
+                    public_id: fileName,
+                },
+                (error, result) => {
+                    if (error) {
+                        console.error("Cloudinary upload error:", error);
+                        reject(error);
+                    } else {
+                        console.log("File uploaded to Cloudinary:", result.url);
+                        resolve(result);
+                    }
                 }
-                return result;
-            }
-        );
+            );
 
-        response.end(fileBuffer); // Send the file buffer to Cloudinary
-
-        console.log("File uploaded to Cloudinary:", response.url);
-        return response;
+            uploadStream.end(fileBuffer);
+        });
     } catch (error) {
         console.log("Error uploading file to Cloudinary:", error);
         return null;
     }
 };
-export { uploadOnCloudinary }
+
+export { uploadOnCloudinary };
 
 //localhost : => use that
 
