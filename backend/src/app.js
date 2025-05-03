@@ -22,7 +22,7 @@ import { upload } from './middlewares/multer.middleware.js'
 const app = express()
 
 app.use(cors({
-    origin:"https://techspear-ecom.vercel.app",
+    origin:process.env.CORS_ORIGIN,
     credentials: true,
     allowedHeaders:["Content-Type","Authorization"],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
