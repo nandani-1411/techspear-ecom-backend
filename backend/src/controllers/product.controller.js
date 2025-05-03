@@ -7,7 +7,7 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import fs from "fs"; 
 
 const createProduct = AsyncHandler(async (req, res) => {
-  const {
+  const { 
     productName,
     description,
     price,
@@ -32,10 +32,10 @@ const createProduct = AsyncHandler(async (req, res) => {
   }
 
   // Extract image paths from req.files
-  const mainProductImgLocalpath = req.files?.mainProductImg?.[0]?.path;
-  const otherProductImgLocalpath = req.files?.otherProductImg
-    ?.map((file) => file.path)
-    .filter(Boolean); // Remove undefined/null paths
+  const mainProductImgLocalpath = req.files?.mainProductImg?.[0]?.buffer;
+  const otherProductImgLocalpath =  req.files?.otherProductImg
+  ?.map((file) => file.buffer)
+  .filter(Boolean); // Remove undefined/null paths
 
   console.log("Main product image path:", mainProductImgLocalpath);
   console.log("Other product image paths:", otherProductImgLocalpath);
