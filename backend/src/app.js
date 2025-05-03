@@ -72,6 +72,13 @@ app.use((err, req, res, next) => {
     });
  });
 
+app.get("/",(req,res,next)=>{
+    res.send({
+        success:true,
+        message:"Techspeare is running."
+    })
+})
+
  // Contact Us Route and Handler
 app.post("/contactus", async (req, res, next) => {
     const { firstName, lastName, email, message } = req.body;
