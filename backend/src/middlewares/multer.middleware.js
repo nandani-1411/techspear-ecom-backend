@@ -5,6 +5,7 @@ const storage = multer.memoryStorage(); // Using memory storage to keep files in
 
 export const upload = multer({ 
     storage, 
+    fileSize: 1 * 1024 * 1024, 
 });
 
 
