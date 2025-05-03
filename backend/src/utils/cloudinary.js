@@ -32,6 +32,7 @@ const uploadOnCloudinary = async (fileBuffer, fileName) => {
         return null;
     }
 };
+export { uploadOnCloudinary }
 
 //localhost : => use that
 
