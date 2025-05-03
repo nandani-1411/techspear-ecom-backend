@@ -1,0 +1,49 @@
+Adding content of backend
+---
+18-19/01/25
+setup backend project register user functionality and Database connection
+--- 
+gap of 10 days Learning of Cloudinary IMgs setup
+---
+31/01/25 -
+uploading register With the Cloudinary IMgs
+Getting Alll useer which are creating account
+Login user functionality 
+
+1/02/25
+update login with adding the jwt tokens 
+and logout work
+and refreshAcesstoken - sessions like 10d tak allow 
+
+2/02/25 -user all routes done
+
+3/02/25 - make product api structure
+
+4/02/25 -
+ all user mangement pushing code 
+ and product management pushing codel
+
+5/02/25 6/02-
+all about cart Api done....
+
+7/02/25  to 10/2/25
+order make the Payment , Feedback, Service ...
+
+9-10 /2 /25 - Payment stripe and razorpay exploraiton
+
+Pending -ass of dcn practicle and ecom ass And Aj Lab etc....
+
+----
+12/2/25 - Order create and getting user when loggedin
+
+13/2/25 
++ all categories api done 
++ updation of order 
++ creation of razorpay account ->
+
+14/2/25 - 18/2/25 
+Feedback related and other search,filter realted 
+categories all done 
+Banner done 
+------
+Payment integration pending that was adding when the frontend and backend both connectivity....
