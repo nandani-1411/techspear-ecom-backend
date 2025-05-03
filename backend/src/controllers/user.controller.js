@@ -53,15 +53,19 @@ const registerUser = AsyncHandler(async (req, res, next) => {
       throw new ApiError(400, "Error : User Ka account Already Hai User Exists.")
    }
 
-   const profilePicLocalPath = req.files?.profilePic?.[0]?.path;
+   // const profilePicLocalPath = req.files?.profilePic?.[0]?.path;
 
-   // if (!profilePicLocalPath) {
-   //    throw new ApiError(400, "Profile pic file is required")
-   // }
+    // Access the file buffer from memory storage
+    const profilePicBuffer = req.files?.profilePic?.[0]?.buffer;
 
-   //clodinary uplod
+    if (!profilePicBuffer) {
+        throw new ApiError(400, "Profile pic file is required.");
+    }
 
-   const cloudinaryProfilePicUpload = await uploadOnCloudinary(profilePicLocalPath)
+    // Upload the buffer to Cloudinary
+    const cloudinaryProfilePicUpload = await uploadOnCloudinary(profilePicBuffer, "profile_pic_" + Date.now());
+
+   // const cloudinaryProfilePicUpload = await uploadOnCloudinary(profilePicLocalPath)
 
 
 
@@ -69,13 +73,14 @@ const registerUser = AsyncHandler(async (req, res, next) => {
       throw new ApiError(400, "ProfilePic must be required")
    }
 
-   // ✅ Delete the local profile pic after successful upload
-   if (fs.existsSync(profilePicLocalPath)) {
-      fs.unlink(profilePicLocalPath, (err) => {
-         if (err) console.error("Failed to delete local profile pic:", err);
-         else console.log("Local profile pic deleted successfully.");
-      });
-   }
+   //for disk storage
+   // // ✅ Delete the local profile pic after successful upload
+   // if (fs.existsSync(profilePicLocalPath)) {
+   //    fs.unlink(profilePicLocalPath, (err) => {
+   //       if (err) console.error("Failed to delete local profile pic:", err);
+   //       else console.log("Local profile pic deleted successfully.");
+   //    });
+   // }
 
    //db create
 
