@@ -37,9 +37,9 @@ const registerUser = AsyncHandler(async (req, res, next) => {
    const { name, email, password } = req.body
 
    //  console.log('cnsle the boddy')
-   //  console.log(req.body)
+    console.log(req.body)
    //  console.log('cnsle the files')
-   //  console.log(req.files)
+    console.log(req.files)
 
    //valid - frontend se data aaya ki nhi
 
