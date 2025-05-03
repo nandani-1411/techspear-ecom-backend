@@ -55,9 +55,9 @@ const registerUser = AsyncHandler(async (req, res, next) => {
 
    const profilePicLocalPath = req.files?.profilePic?.[0]?.path;
 
-   if (!profilePicLocalPath) {
-      throw new ApiError(400, "Profile pic file is required")
-   }
+   // if (!profilePicLocalPath) {
+   //    throw new ApiError(400, "Profile pic file is required")
+   // }
 
    //clodinary uplod
 
